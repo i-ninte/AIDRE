@@ -86,11 +86,13 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1.25rem 2rem;
+    width: 100%;
 }
 
 .logo {
     display: flex;
     align-items: center;
+    margin-right: auto;
 }
 
 .logo .logo-link {
@@ -166,6 +168,7 @@ body {
     padding: 0.5rem;
     border-radius: var(--border-radius-md);
     transition: var(--transition-fast);
+    margin-left: auto;
 }
 
 .mobile-menu-toggle:hover {
@@ -1512,6 +1515,11 @@ body {
     
     .mobile-menu-toggle {
         display: flex;
+        margin-left: auto;
+    }
+    
+    .header .container {
+        justify-content: space-between;
     }
 
     .logo .logo-img {
