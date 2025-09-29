@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - AIDRE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip to content link -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a class="logo-link" href="index.html" aria-label="AIDRE Home">
+                    <img src="aidre-logo.svg" alt="AIDRE logo" class="logo-img">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="centers.html">Centers</a></li>
+                    <li><a href="publications.html">Publications</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="centers.html">Centers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="#">Sample Page</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Page Header -->
+        <section class="page-header contact-header">
+            <div class="container">
+                <h1>Contact</h1>
+                <p>Get in touch with us to discuss your research and evaluation needs</p>
+            </div>
+        </section>
+
+        <!-- Contact Content -->
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-wrapper">
+                    <!-- Contact Information -->
+                    <div class="contact-info">
+                        <h2>Get in Touch</h2>
+                        <p>We're here to support evidence-informed policy making across Africa. Contact us to discuss how we can help with your research and evaluation needs.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <h3>Office Address</h3>
+                                <p>African Institute for Development Research and Evaluation<br>
+                                123 Research Avenue<br>
+                                Accra, Ghana</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h3>Phone</h3>
+                                <p>+233 (0) 123 456 789</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h3>Email</h3>
+                                <p>info@aidre.org<br>
+                                research@aidre.org</p>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <h3>Office Hours</h3>
+                                <p>Monday - Friday: 8:00 AM - 5:00 PM GMT<br>
+                                Saturday: 9:00 AM - 1:00 PM GMT<br>
+                                Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <h2>Send us a Message</h2>
+                        <form id="contactForm" action="#" method="post">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="organization">Organization</label>
+                                <input type="text" id="organization" name="organization">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="research">Research Collaboration</option>
+                                    <option value="evaluation">Evaluation Services</option>
+                                    <option value="training">Training Programs</option>
+                                    <option value="funding">Funding Opportunities</option>
+                                    <option value="publications">Publications Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="6" required placeholder="Please describe your inquiry or how we can help you..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <span class="checkmark"></span>
+                                    I would like to receive updates about AIDRE's research and publications
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Additional Contact Sections -->
+        <section class="additional-contact">
+            <div class="container">
+                <div class="contact-sections">
+                    <div class="contact-section">
+                        <h3>Research Partnerships</h3>
+                        <p>Interested in collaborating on research projects? We welcome partnerships with academic institutions, government agencies, and development organizations.</p>
+                        <a href="mailto:partnerships@aidre.org" class="contact-link">partnerships@aidre.org</a>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <h3>Media Inquiries</h3>
+                        <p>For media requests, interviews, and press inquiries, please contact our communications team.</p>
+                        <a href="mailto:media@aidre.org" class="contact-link">media@aidre.org</a>
+                    </div>
+                    
+                    <div class="contact-section">
+                        <h3>Career Opportunities</h3>
+                        <p>Join our team of dedicated researchers and evaluators working to support evidence-informed policy making in Africa.</p>
+                        <a href="mailto:careers@aidre.org" class="contact-link">careers@aidre.org</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Copyright © 2025 AIDRE | Powered by <a href="https://i-ninte.github.io/portfolio/" target="_blank" rel="noopener" class="contact-link">NinteLabs</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
