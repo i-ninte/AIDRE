@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Opening the menu
                 console.log('Opening menu');
                 mobileMenu.style.display = 'block'; // Show immediately
-                mobileMenu.style.visibility = 'visible'; // Ensure visibility
                 setTimeout(() => {
                     mobileMenu.classList.add('open');
                     console.log('Menu should be visible now');
