@@ -2,6 +2,10 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Initialize animations and effects
+    initializeAnimations();
+    initializeScrollEffects();
+    
     // Mobile Menu Toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const mobileMenu = document.querySelector('.mobile-menu');
@@ -335,19 +339,113 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize effects
     initializeEffects();
     
+    // Initialize smooth scrolling
+    initializeSmoothScrolling();
+    
+    // Initialize intersection observer for animations
+    initializeIntersectionObserver();
+    
     // Console message for developers
     console.log('AIDRE Website loaded successfully! 🚀');
     console.log('Supporting evidence-informed policy making in Africa.');
 });
 
+// Initialize animations
+function initializeAnimations() {
+    // Add stagger animation to cards
+    const cards = document.querySelectorAll('.section-card, .center-card, .publication-card, .project-card, .category-card');
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.classList.add('fade-in');
+    });
+}
+
+// Initialize scroll effects
+function initializeScrollEffects() {
+    let ticking = false;
+    
+    function updateScrollEffects() {
+        const scrolled = window.pageYOffset;
+        const header = document.querySelector('.header');
+        
+        if (header) {
+            if (scrolled > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            }
+        }
+        
+        ticking = false;
+    }
+    
+    function requestScrollUpdate() {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollEffects);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestScrollUpdate);
+}
+
+// Initialize smooth scrolling
+function initializeSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '#main-content') {
+                e.preventDefault();
+                const target = document.getElementById('main-content') || document.body;
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
+
+// Initialize intersection observer for animations
+function initializeIntersectionObserver() {
+    if ('IntersectionObserver' in window) {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Add stagger effect for multiple elements
+                    const siblings = Array.from(entry.target.parentElement.children);
+                    const index = siblings.indexOf(entry.target);
+                    entry.target.style.transitionDelay = `${index * 0.1}s`;
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        const animatedElements = document.querySelectorAll('.section-card, .center-card, .publication-card, .project-card, .category-card, .contact-section');
+        animatedElements.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    }
+}
+
 // Add CSS animations via JavaScript
 const style = document.createElement('style');
 style.textContent = `
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
     .mobile-menu-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -359,10 +457,79 @@ style.textContent = `
     .mobile-menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
-    
-    .form-group.focused label {
-        color: #2c5aa0;
-        font-size: 0.9rem;
+
+    /* Enhanced hover effects */
+    .section-card:hover,
+    .center-card:hover,
+    .publication-card:hover,
+    .project-card:hover,
+    .category-card:hover,
+    .contact-section:hover {
+        transform: translateY(-8px) scale(1.02);
+    }
+
+    /* Smooth transitions for all interactive elements */
+    .read-more,
+    .view-more,
+    .cta-button,
+    .btn-download,
+    .btn-abstract,
+    .project-link,
+    .contact-link {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Enhanced focus states */
+    .read-more:focus,
+    .view-more:focus,
+    .cta-button:focus,
+    .btn-download:focus,
+    .btn-abstract:focus {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Loading animation for form submission */
+    .submit-btn.loading {
+        position: relative;
+        color: transparent;
+    }
+
+    .submit-btn.loading::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin: -10px 0 0 -10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Parallax effect for hero sections */
+    .hero.home-hero,
+    .about-header,
+    .centers-header,
+    .contact-header,
+    .stay-updated {
+        background-attachment: fixed;
+    }
+
+    @media (max-width: 768px) {
+        .hero.home-hero,
+        .about-header,
+        .centers-header,
+        .contact-header,
+        .stay-updated {
+            background-attachment: scroll;
+        }
     }
 `;
 document.head.appendChild(style);
