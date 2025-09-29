@@ -13,8 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuToggle && mobileMenu) {
         mobileMenuToggle.addEventListener('click', function(e) {
             e.stopPropagation(); // Prevent outside click from immediately closing
-            mobileMenu.classList.toggle('open');
-            this.classList.toggle('active');
+            
+            console.log('Mobile menu toggle clicked'); // Debug log
+            
+            if (mobileMenu.classList.contains('open')) {
+                // Closing the menu
+                console.log('Closing menu');
+                mobileMenu.classList.remove('open');
+                this.classList.remove('active');
+            } else {
+                // Opening the menu
+                console.log('Opening menu');
+                mobileMenu.style.display = 'block'; // Show immediately
+                mobileMenu.style.visibility = 'visible'; // Ensure visibility
+                setTimeout(() => {
+                    mobileMenu.classList.add('open');
+                    console.log('Menu should be visible now');
+                }, 10); // Small delay for animation
+                this.classList.add('active');
+            }
         });
         
         // Close mobile menu when clicking outside
@@ -24,6 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 !mobileMenu.contains(event.target)) {
                 mobileMenu.classList.remove('open');
                 mobileMenuToggle.classList.remove('active');
+                // Hide after animation completes
+                setTimeout(() => {
+                    if (!mobileMenu.classList.contains('open')) {
+                        mobileMenu.style.display = 'none';
+                    }
+                }, 300);
             }
         });
         
@@ -32,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
                 mobileMenu.classList.remove('open');
                 mobileMenuToggle.classList.remove('active');
+                mobileMenu.style.display = 'none';
             }
         });
         
