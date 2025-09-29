@@ -11,26 +11,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenu = document.querySelector('.mobile-menu');
     
     if (mobileMenuToggle && mobileMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-            
-            // Animate hamburger menu
-            mobileMenuToggle.classList.toggle('active');
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent outside click from immediately closing
+            mobileMenu.classList.toggle('open');
+            this.classList.toggle('active');
         });
         
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!mobileMenuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.style.display = 'none';
+            if (mobileMenu.classList.contains('open') &&
+                !mobileMenuToggle.contains(event.target) &&
+                !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('open');
                 mobileMenuToggle.classList.remove('active');
             }
         });
         
-        // Close mobile menu when window is resized to desktop size
+        // Close on resize
         window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                mobileMenu.style.display = 'none';
+            if (window.innerWidth > 768 && mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
                 mobileMenuToggle.classList.remove('active');
+            }
+        });
+        
+        // Add keyboard support
+        mobileMenuToggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
             }
         });
     }
@@ -212,16 +221,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuToggle && mobileMenu) {
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         
-        mobileMenuToggle.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                this.click();
-            }
-        });
-        
         // Trap focus in mobile menu when open
         document.addEventListener('keydown', function(e) {
-            if (mobileMenu.style.display === 'block' && e.key === 'Tab') {
+            if (mobileMenu.classList.contains('open') && e.key === 'Tab') {
                 const firstLink = mobileMenuLinks[0];
                 const lastLink = mobileMenuLinks[mobileMenuLinks.length - 1];
                 
